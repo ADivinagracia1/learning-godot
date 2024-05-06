@@ -40,7 +40,7 @@ custom_minimum_size = Vector2(500, 2.08165e-12)
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="TextureButton" type="TextureButton" parent="M/VB"]
+[node name="NewGame" type="TextureButton" parent="M/VB"]
 custom_minimum_size = Vector2(350, 75)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -48,7 +48,7 @@ texture_normal = ExtResource("2_qa575")
 texture_pressed = ExtResource("3_3gnkj")
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="M/VB/TextureButton"]
+[node name="Label" type="Label" parent="M/VB/NewGame"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -65,14 +65,14 @@ text = "New Game
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureButton2" type="TextureButton" parent="M/VB"]
+[node name="Quit" type="TextureButton" parent="M/VB"]
 custom_minimum_size = Vector2(350, 70)
 layout_mode = 2
 texture_normal = ExtResource("2_qa575")
 texture_pressed = ExtResource("3_3gnkj")
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="M/VB/TextureButton2"]
+[node name="Label" type="Label" parent="M/VB/Quit"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
