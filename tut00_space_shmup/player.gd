@@ -16,3 +16,8 @@ func _process(delta):
 		new_laser.position = self.position
 		print("PEW!")
 
+func _on_area_entered(area):
+	# if enemy enters, player di es
+	if area.is_in_group("enemy"):
+		self.queue_free()
+		GameState.is_game_over = true

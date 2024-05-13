@@ -7,5 +7,9 @@ func _process(delta):
 	# as laser spawns, position changes
 	self.position.y -= speed * delta
 
-func _on_area_entered(area):
-	self.queue_free()
+# function that destroyes the laser
+func _on_area_entered(other_area):
+	# if it hit an ENEMY (not it any area)
+	# otherwise, Hits ANY area, laser deletes
+	if other_area.is_in_group("enemy"):
+		self.queue_free()

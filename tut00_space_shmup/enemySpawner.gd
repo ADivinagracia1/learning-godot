@@ -18,5 +18,4 @@ func spawn_enemy_ship():
 	new_enemy.position.y = SPAWN_Y
 	var rand_x = randf_range(get_viewport_rect().position.x + SPAWN_X, get_viewport_rect().size.x - SPAWN_X);
 	new_enemy.position.x = rand_x
-	
 
