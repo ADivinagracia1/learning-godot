@@ -16,7 +16,10 @@ func exit():
 	
 func on_input(_event: InputEvent) -> void:
 	pass
-	
+
+func on_gui_input(event: InputEvent) -> void:
+	pass
+
 func on_mouse_entered() -> void:
 	pass
 	
