@@ -1,12 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://meideqepyis4"]
+[gd_scene load_steps=11 format=3 uid="uid://meideqepyis4"]
 
 [ext_resource type="Script" path="res://scenes/card_ui/card_ui.gd" id="1_2wpbc"]
 [ext_resource type="Theme" uid="uid://catfkerrr6wnr" path="res://game_theme.tres" id="1_j0hls"]
+[ext_resource type="Resource" uid="uid://i7oj0sk582uv" path="res://characters/warrior/cards/warrior_axe_attack.tres" id="2_vurqh"]
 [ext_resource type="Script" path="res://scenes/card_ui/card_state_machine.gd" id="3_3v71b"]
 [ext_resource type="Script" path="res://scenes/card_ui/card_states/card_base_state.gd" id="4_na5vb"]
 [ext_resource type="Script" path="res://scenes/card_ui/card_states/card_clicked_state.gd" id="5_r6huu"]
 [ext_resource type="Script" path="res://scenes/card_ui/card_states/card_dragging_state.gd" id="6_g7ofg"]
 [ext_resource type="Script" path="res://scenes/card_ui/card_states/card_released_state.gd" id="7_o7aia"]
+[ext_resource type="Script" path="res://scenes/card_ui/card_states/card_aiming_state.gd" id="9_pynsk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8o17u"]
 size = Vector2(25, 30)
@@ -22,6 +24,7 @@ offset_bottom = -114.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2wpbc")
+card = ExtResource("2_vurqh")
 
 [node name="Color" type="ColorRect" parent="."]
 layout_mode = 1
@@ -70,6 +73,10 @@ state = 2
 [node name="CardReleasedState" type="Node" parent="CardStateMachine"]
 script = ExtResource("7_o7aia")
 state = 4
+
+[node name="CardAimingState" type="Node" parent="CardStateMachine"]
+script = ExtResource("9_pynsk")
+state = 3
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

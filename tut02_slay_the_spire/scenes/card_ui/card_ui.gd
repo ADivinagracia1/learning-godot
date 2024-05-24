@@ -3,18 +3,28 @@ extends Control
 
 signal reparent_requested(which_card_ui: CardUI)
 
-# Chidren of CardUI
+@export var card: Card
+
+# Variables of CardUI
 @onready var color: ColorRect = $Color
 @onready var state: Label = $State
 @onready var drop_point_detector: Area2D = $DropPointDetector
 @onready var card_state_machine: CardStateMachine = $CardStateMachine as CardStateMachine
 @onready var targets: Array[Node] = []
 
+# Variables of card arc aiming
+var parent: Control
+var tween: Tween
+
 func _ready() -> void:
 	card_state_machine.init(self)
 
 func _input(event: InputEvent) -> void:
 	card_state_machine.on_input(event)
+
+func animate_to_position(new_position: Vector2, duration: float) -> void:
+	tween = create_tween().set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "global_position", new_position, duration)
 
 # THE BELOW FUNCTIONS NEED TO BE CONNECTED TO THE PROPER SIGNAL SCRIPT
 func _on_gui_input(event: InputEvent) -> void:
@@ -25,7 +35,6 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	card_state_machine.on_mouse_exited()
-
 
 # ======= Makes sure cards under the play area return to hand ========
 func _on_drop_point_detector_area_entered(area):

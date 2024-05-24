@@ -19,9 +19,15 @@ func enter() -> void:
 	threshold_timer.timeout.connect(func(): minimum_drag_time_elapsed = true)
 
 func on_input(event: InputEvent) -> void:
+	var single_targeted := card_ui.card.is_single_targeted() # function we made
 	var mouse_motion := event is InputEventMouseMotion
 	var cancel = event.is_action_pressed("right_mouse")
 	var confirm = event.is_action_released("left_mouse") or event.is_action_pressed("left_mouse")
+	
+	# check to go to aiming state
+	if single_targeted and mouse_motion and card_ui.targets.size() > 0:
+		transition_requested.emit(self, CardState.State.AIMING)
+		return
 	
 	# card being dragged around 
 	if mouse_motion:

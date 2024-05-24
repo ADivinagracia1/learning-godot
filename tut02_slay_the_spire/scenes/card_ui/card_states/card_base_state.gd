@@ -4,7 +4,11 @@ func enter() -> void:
 	# children get ready first. card_ui (parent) is only ready when all children are ready 
 	if not card_ui.is_node_ready():
 		await card_ui.ready
-		
+	
+	# fixes the quick return to hand bug
+	if card_ui.tween and card_ui.tween.is_running():
+		card_ui.tween.kill()
+	
 	card_ui.reparent_requested.emit(card_ui)
 	card_ui.color.color = Color.WEB_GREEN
 	card_ui.state.text = "BASE"
