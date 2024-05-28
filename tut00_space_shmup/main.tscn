@@ -1,0 +1,72 @@
+[gd_scene load_steps=12 format=3 uid="uid://6sf70ki4ogc1"]
+
+[ext_resource type="Texture2D" uid="uid://c8wvhbcc58sr" path="res://Assets/back.png" id="1_48bne"]
+[ext_resource type="Texture2D" uid="uid://cfjbcayodeb1v" path="res://Assets/playerShip2_orange.png" id="2_4jeq2"]
+[ext_resource type="Script" path="res://player.gd" id="2_x2uhs"]
+[ext_resource type="PackedScene" uid="uid://cmswridg32qvw" path="res://laser.tscn" id="4_pg0ws"]
+[ext_resource type="Script" path="res://enemySpawner.gd" id="5_svrpu"]
+[ext_resource type="PackedScene" uid="uid://ukdgc5nryghb" path="res://enemy.tscn" id="6_6wkoe"]
+[ext_resource type="Script" path="res://ScoreLabel.gd" id="7_37d62"]
+[ext_resource type="Script" path="res://GameOverLabel.gd" id="8_7oo2o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hfqvm"]
+size = Vector2(60, 29)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tjyga"]
+font_size = 36
+
+[sub_resource type="LabelSettings" id="LabelSettings_qqn80"]
+font_size = 70
+
+[node name="Main" type="Node2D"]
+
+[node name="SpaveBackground" type="Sprite2D" parent="."]
+position = Vector2(261, 481)
+rotation = 1.5708
+scale = Vector2(0.541565, 0.541565)
+texture = ExtResource("1_48bne")
+metadata/_edit_lock_ = true
+
+[node name="Player" type="Area2D" parent="."]
+position = Vector2(275, 880)
+script = ExtResource("2_x2uhs")
+laser_tscn = ExtResource("4_pg0ws")
+metadata/_edit_group_ = true
+
+[node name="ShipGraphic" type="Sprite2D" parent="Player"]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_4jeq2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, 9.5)
+shape = SubResource("RectangleShape2D_hfqvm")
+
+[node name="EnemySpawner" type="Node2D" parent="."]
+script = ExtResource("5_svrpu")
+enemy_tscn = ExtResource("6_6wkoe")
+
+[node name="Timer" type="Timer" parent="EnemySpawner"]
+autostart = true
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 17.0
+offset_top = 15.0
+offset_right = 176.0
+offset_bottom = 73.0
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_tjyga")
+script = ExtResource("7_37d62")
+
+[node name="GameOverLabel" type="Label" parent="."]
+visible = false
+offset_top = 5.0
+offset_right = 536.0
+offset_bottom = 958.0
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_qqn80")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("8_7oo2o")
+
+[connection signal="area_entered" from="Player" to="Player" method="_on_area_entered"]
+[connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="spawn_enemy_ship"]

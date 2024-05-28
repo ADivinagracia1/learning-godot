@@ -1,0 +1,73 @@
+[gd_scene load_steps=7 format=3 uid="uid://oeobilc7vgvd"]
+
+[ext_resource type="Theme" uid="uid://catfkerrr6wnr" path="res://game_theme.tres" id="1_kwfak"]
+[ext_resource type="Script" path="res://scenes/ui/health_bar.gd" id="1_xjtni"]
+[ext_resource type="Texture2D" uid="uid://cyikma8uftp8o" path="res://art/LifeBarMiniUnder.png" id="2_whcql"]
+[ext_resource type="Texture2D" uid="uid://crlvjkfhnl02i" path="res://art/LifeBarMiniProgress.png" id="3_xu7ed"]
+[ext_resource type="Texture2D" uid="uid://catko8epw3cit" path="res://art/LifeBarMiniProgressShield.png" id="5_bga8k"]
+[ext_resource type="Texture2D" uid="uid://c6sa1jgu1kjf7" path="res://art/shield.png" id="6_n36mw"]
+
+[node name="HealthBar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 60.0
+offset_bottom = 14.0
+theme = ExtResource("1_kwfak")
+script = ExtResource("1_xjtni")
+
+[node name="HealthProgressBar" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 15.0
+offset_top = 3.0
+offset_right = 49.0
+offset_bottom = 9.0
+value = 66.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_whcql")
+texture_progress = ExtResource("3_xu7ed")
+
+[node name="HealthLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 51.0
+offset_top = 3.0
+offset_right = 61.0
+offset_bottom = 9.0
+theme_override_colors/font_color = Color(1, 0.192157, 0.227451, 1)
+text = "88
+"
+
+[node name="BlockProgressBar" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 15.0
+offset_top = 2.0
+offset_right = 49.0
+offset_bottom = 8.0
+value = 45.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_whcql")
+texture_progress = ExtResource("5_bga8k")
+
+[node name="BlockIcon" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -1.0
+offset_top = -2.0
+offset_right = 18.0
+offset_bottom = 14.0
+texture = ExtResource("6_n36mw")
+
+[node name="BlockLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 14.0
+offset_bottom = 18.0
+theme_override_colors/font_color = Color(0, 0.47451, 1, 1)
+text = "88
+
+"
+horizontal_alignment = 1

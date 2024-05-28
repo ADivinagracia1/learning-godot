@@ -1,0 +1,10 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://bnvo4o22mja55"]
+
+[ext_resource type="FontFile" uid="uid://bev5sjf8npy2" path="res://Assets/Fonts/Kenney Future Narrow.ttf" id="1_q6oyx"]
+
+[resource]
+fallbacks = Array[Font]([null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
+base_font = ExtResource("1_q6oyx")
+opentype_features = {
+1667329140: 0
+}
