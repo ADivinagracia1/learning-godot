@@ -18,6 +18,9 @@ config/icon="res://icon.png"
 [autoload]
 
 Events="*res://global/events.gd"
+Shaker="*res://global/shaker.gd"
+MusicPlayer="*res://global/sound_player.gd"
+SFXPlayer="*res://global/sfx_player.tscn"
 
 [display]
 
@@ -30,6 +33,10 @@ window/stretch/mode="viewport"
 [dotnet]
 
 project/assembly_name="Slay the Spire Clone"
+
+[gui]
+
+theme/custom="res://game_theme.tres"
 
 [input]
 

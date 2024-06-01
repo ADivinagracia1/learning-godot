@@ -1,13 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://byxi2uprgpumt"]
+[gd_scene load_steps=9 format=3 uid="uid://byxi2uprgpumt"]
 
 [ext_resource type="Script" path="res://scenes/enemy/enemy.gd" id="1_p4ko8"]
 [ext_resource type="Texture2D" uid="uid://1u3b3hwqd8yh" path="res://art/tile_0110.png" id="1_wmoso"]
 [ext_resource type="Texture2D" uid="uid://bb3rcs5nqntir" path="res://art/arrow.png" id="3_3f1n5"]
 [ext_resource type="PackedScene" uid="uid://s80g0aqljf5c" path="res://scenes/ui/stats_ui.tscn" id="4_rdo7w"]
 [ext_resource type="PackedScene" uid="uid://oeobilc7vgvd" path="res://scenes/ui/health_bar.tscn" id="5_pgm2n"]
-[ext_resource type="Resource" uid="uid://djdgw7yry3x2p" path="res://enemies/crab/test_enemy.tres" id="6_xwh1i"]
+[ext_resource type="Resource" uid="uid://dr7rfckxrjg32" path="res://enemies/crab/crab_enemy.tres" id="6_xwh1i"]
+[ext_resource type="PackedScene" uid="uid://da4c3axum03ga" path="res://scenes/ui/intent_ui.tscn" id="7_y5w3m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_grkfk"]
+size = Vector2(37, 34)
 
 [node name="Enemy" type="Area2D" groups=["enemies"]]
 collision_layer = 4
@@ -23,6 +25,7 @@ rotation = 3.14159
 texture = ExtResource("3_3f1n5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_grkfk")
 debug_color = Color(0, 0.6, 0.701961, 0.415686)
 
@@ -39,6 +42,12 @@ offset_right = 42.0
 offset_bottom = 21.0
 stats = ExtResource("6_xwh1i")
 metadata/_edit_use_anchors_ = true
+
+[node name="IntentUI" parent="." instance=ExtResource("7_y5w3m")]
+offset_left = -20.0
+offset_top = -26.0
+offset_right = 20.0
+offset_bottom = -12.0
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

@@ -3,16 +3,19 @@ extends Node2D
 
 @export var stats: CharacterStats : set = set_character_stats
 
+# add a new texture for damage effects
+const WHITE_SPRITE_MATERIAL := preload("res://art/white_sprite_material.tres")
+
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var stats_ui: StatsUI = $StatsUI as StatsUI
 @onready var health_bar: HealthBar = $HealthBar as HealthBar
 
-func _ready() -> void:
-	return
-	#HARDCODED DAMAGE AN BLOCK VALUES 
-	await get_tree().create_timer(4).timeout
-	take_damage(20)
-	stats.block += 17
+#func _ready() -> void:
+	#return
+	##HARDCODED DAMAGE AN BLOCK VALUES 
+	#await get_tree().create_timer(4).timeout
+	#take_damage(20)
+	#stats.block += 17
 
 ## The below code requires setup() to be called in battle.tscn
 #var stats: CharacterStats
@@ -41,8 +44,15 @@ func update_stats() -> void:
 
 func take_damage(damage: int) -> void:
 	if stats.health <= 0: return 
-	stats.take_damage(damage)
-	
-	# Deletes player from the scene (game over)
-	if stats.health <= 0:
-		queue_free()
+	sprite_2d.material = WHITE_SPRITE_MATERIAL
+	var tween := create_tween()
+	tween.tween_callback(Shaker.shake.bind(self, 16, 0.15))
+	tween.tween_callback(stats.take_damage.bind(damage))
+	tween.tween_interval(0.18)
+	tween.finished.connect(
+		func(): 
+			sprite_2d.material = null
+			if stats.health <= 0: 
+				self.queue_free()
+				Events.player_died.emit()
+	)

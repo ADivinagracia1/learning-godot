@@ -13,9 +13,10 @@ func _ready() -> void:
 
 func start_battle(char_stats: CharacterStats) -> void:
 	character = char_stats
-	character.draw_pile = character.deck.duplicate(true)
+	character.draw_pile = character.deck.duplicate(true) # deep copy of resource
 	character.draw_pile.shuffle()
 	character.discard_pile = CardPile.new()
+	
 	start_turn()
 
 func start_turn() -> void:
@@ -51,7 +52,6 @@ func discard_cards() -> void:
 		tween.tween_callback(hand.discard_card.bind(card_ui))
 		tween.tween_interval(HAND_DISCARD_INTERVAL)
 	
-	print(character.discard_pile)
 	# create an anonymus function to notify that the player hand is discarded
 	# aka, "animation" finished
 	tween.finished.connect(

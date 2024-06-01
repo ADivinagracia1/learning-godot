@@ -14,7 +14,8 @@ func update_stats(stats: Stats):
 	health_label.text = str(stats.health)
 	
 	if stats.block > 0:
-		health_progress_bar.value = block_progress_bar.value
+		health_progress_bar.value = stats.health * 100 / stats.max_health
+		block_progress_bar.value = stats.health * 100 / stats.max_health
 		block_progress_bar.visible = true
 		block_icon.visible = true
 		block_label.visible = true
